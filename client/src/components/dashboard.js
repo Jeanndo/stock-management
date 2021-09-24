@@ -81,7 +81,7 @@ function DashboardContent() {
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
-              pr: "24px", // keep right padding when drawer closed
+              pr: "24px", 
             }}
           >
             <IconButton
@@ -97,7 +97,7 @@ function DashboardContent() {
               <MenuIcon />
             </IconButton>
             <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1 }}>
-              Dashboard
+              STOCK MANAGEMENT SYSTEM
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
