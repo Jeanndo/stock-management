@@ -22,7 +22,6 @@ export const useStyles = makeStyles({
     fontSize: '28px',
     lineHeight: '36px',
     textAlign:'center',
-    color:'blue'
 
     },
     ProductName:{
