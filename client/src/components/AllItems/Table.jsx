@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import EditIcon from '@mui/icons-material/Edit';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+ 
 
 function createData(name, calories, fat, carbs, protein) {
     return { name, calories, fat, carbs, protein };
@@ -21,7 +22,8 @@ function createData(name, calories, fat, carbs, protein) {
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
 
-const ItemTable = ()=>{
+const ItemTable = ({handleOpen})=>{
+
    return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -51,13 +53,17 @@ const ItemTable = ()=>{
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
-              <TableCell align="right"><EditIcon style={{
+              <TableCell align="right">
+                <EditIcon style={{
                   cursor:'pointer',
                   color:'blue',
                   borderRadius:'50%',
                   border:'2px solid blue',
                   padding:'3px'
-                  }}/></TableCell>
+                  }}
+                  onClick={handleOpen}
+                  />
+                  </TableCell>
               <TableCell align="right"><HighlightOffIcon style={{
                   cursor:'pointer',
                   color:'blue',
