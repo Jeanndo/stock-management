@@ -20,7 +20,9 @@ const AllItems = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <ItemsTable />
+          <ItemsTable 
+          handleOpen={handleOpen}
+          />
         </Grid>
       </Grid>
     </div>
