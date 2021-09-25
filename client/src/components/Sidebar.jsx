@@ -4,7 +4,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import StoreIcon from "@mui/icons-material/Store";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import AllItems from "./AllItems/AllItems";
 import AllUsers from "./AllUsers/AllUsers";
 import Stock from './stock/stock'
@@ -12,6 +11,7 @@ import { PeopleTwoTone } from "@mui/icons-material";
 import Avatar from '@mui/material/Avatar';
 import Divider from "@mui/material/Divider"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { ListItemAvatar } from "@mui/material";
 
 const Sidebar = (props) => {
   const handleDashboard = () => {
@@ -30,9 +30,12 @@ const Sidebar = (props) => {
   };
   return (
     <div>
-      <div style={{marginLeft:'10px',marginBottom:'10px'}}>
-      <Avatar alt="user" src="https://avatars.githubusercontent.com/u/59208992?v=4" />
-      </div>
+      <ListItem>
+      <ListItemAvatar>
+        <Avatar alt="user" src="https://avatars.githubusercontent.com/u/59208992?v=4" />
+        </ListItemAvatar>
+        <ListItemText primary="User"/>
+      </ListItem>
       <Divider/>
       <ListItem button onClick={handleDashboard}>
         <ListItemIcon>
