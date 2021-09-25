@@ -22,13 +22,15 @@ export const useStyles = makeStyles({
         marginLeft:'40px',
         marginRight:'20px',
         height:'300px',
-        backgroundColor:'#39c3ff'
+        backgroundColor:'#39c3ff',
+        textAlign:'center'
     },
     Products:{
         borderRadius:'100%',
         width:'300px',
         height:'300px',
-        backgroundColor:'#757de8'
+        backgroundColor:'#757de8',
+        textAlign:'center'
     },
     heading1:{
         marginTop:'120px',

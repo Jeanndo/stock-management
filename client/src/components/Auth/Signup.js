@@ -2,22 +2,17 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import GoogleLogin from "react-google-login";
-import {useStyles} from './styles'
-
+import GoogleLogin from 'react-google-login';
 
 const theme = createTheme();
 
 export default function SignUp() {
-
-  const classes = useStyles()
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -28,23 +23,25 @@ export default function SignUp() {
     });
   };
 
-  const googleSuccess = async (res) => {
+  const  googleSuccess =  async (res)=>{
     //   const result = res?.profileObj;
     //   const token = res?.tokenId;
+  
     // try {
     //     dispatch({type:'AUTH',data:{result,token}});
+         
     //     history.push('/');
     // } catch (error) {
     //    console.log(error);
     // }
-  };
-  const googleFailure = (error) => {
-    console.log(error);
+  }
+  const  googleFailure =(error)=>{
+    console.log(error)
     console.log("Google Sing In was unsuccessful. Try Again Later");
-  };
+   }
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" className={classes.AuthBack} >
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
@@ -116,22 +113,22 @@ export default function SignUp() {
               Sign Up
             </Button>
             <GoogleLogin
-              clientId="65688288942-pf0sgh5gcvnneskbgspl6mel27bbuf91.apps.googleusercontent.com"
-              render={(renderProps) => (
-                <Button
-                  variant="outlined"
-                  color="primary"
+             clientId="65688288942-pf0sgh5gcvnneskbgspl6mel27bbuf91.apps.googleusercontent.com"
+              render={(renderProps)=>(
+                 <Button 
+                 variant="outlined"
+                  color="primary" 
                   fullWidth
-                  onClick={renderProps.onClick}
-                  disabled={renderProps.deisabled}
-                >
-                  Google Sign In
-                </Button>
+                   onClick={renderProps.onClick} 
+                   disabled={renderProps.deisabled}
+                   >
+                        Google Sign In
+                    </Button>
               )}
               onSuccess={googleSuccess}
               onFailure={googleFailure}
-              cookiePolicy="single_host_origin"
-            />
+              cookiePolicy = "single_host_origin"
+             />
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/login" variant="body2">
