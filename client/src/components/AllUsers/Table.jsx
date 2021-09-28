@@ -40,6 +40,9 @@ const ItemTable = ({ handleOpen }) => {
               <b>Role</b>
             </TableCell>
             <TableCell align="right">
+              <b>Date</b>
+            </TableCell>
+            <TableCell align="right">
               <b>Edit</b>
             </TableCell>
             <TableCell align="right">
@@ -59,6 +62,7 @@ const ItemTable = ({ handleOpen }) => {
               <TableCell align="right">{row.calories}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>
               <TableCell align="right">{row.carbs}</TableCell>
+              <TableCell align="right">dates</TableCell>
               <TableCell align="right">
                 <EditIcon
                   style={{

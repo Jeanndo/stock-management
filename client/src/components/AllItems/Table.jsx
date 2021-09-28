@@ -35,6 +35,7 @@ const ItemTable = ({handleOpen})=>{
             <TableCell align="right"><b>Owner</b></TableCell>
             <TableCell align="right"><b>Owner Phone Number</b></TableCell>
             <TableCell align="right"><b>Price</b></TableCell>
+            <TableCell align="right"><b>Date</b></TableCell>
             <TableCell align="right"><b>Edit</b></TableCell>
             <TableCell align="right"><b>Delete</b></TableCell>
           </TableRow>
@@ -53,6 +54,7 @@ const ItemTable = ({handleOpen})=>{
               <TableCell align="right">{row.carbs}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
               <TableCell align="right">{row.protein}</TableCell>
+              <TableCell align="right">date</TableCell>
               <TableCell align="right">
                 <EditIcon style={{
                   cursor:'pointer',
