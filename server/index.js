@@ -4,7 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import ProductRoutes from './Routes/productsRoutes.js'
-import UserRoutes from './Routes/usersRoutes.js'
+// import UserRoutes from './Routes/usersRoutes.js'
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded(({limit:'20mb',extended:true})))
 app.use(cors())
 
 app.use('/products',ProductRoutes);
-app.use('/users',UserRoutes);
+// app.use('/users',UserRoutes);
 
 app.get('/',(req,res)=>{
     res.send('Hello to stock management')
