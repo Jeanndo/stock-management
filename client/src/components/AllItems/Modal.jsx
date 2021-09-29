@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AddItem from "../AddItem/AddItem";
 
-const AddItemModal = ({ handleOpen, open, handleClose }) => {
+const AddItemModal = ({ handleOpen, open, handleClose,currentId ,setCurrentId}) => {
   return (
     <div>
       <Button onClick={handleOpen} style={{ float: "left" }} variant="outlined">
@@ -22,7 +22,10 @@ const AddItemModal = ({ handleOpen, open, handleClose }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddItem handleClose={handleClose} />
+        <AddItem handleClose={handleClose} 
+        currentId={currentId}
+        setCurrentId={setCurrentId}
+        />
       </Modal>
     </div>
   );
