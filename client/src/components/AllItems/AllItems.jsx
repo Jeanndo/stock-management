@@ -1,27 +1,23 @@
 import React from "react";
 import { Grid} from "@mui/material";
 import ItemsTable from "./Table";
-import AddItem from './Modal'
+import AddItem from '../AddItem/AddItem'
 
 const AllItems = () => {
+    const [currentId,setCurrentId] = React.useState(null)
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
   return (
       
     <div>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <AddItem
-          open={open}
-          handleOpen={handleOpen}
-          handleClose={handleClose}
+      <AddItem
+          currentId={currentId}
+          setCurrentId={setCurrentId}
           />
-        </Grid>
+      <Grid container spacing={3} style={{marginTop:"100px"}}>
         <Grid item xs={12}>
           <ItemsTable 
-          handleOpen={handleOpen}
+           currentId={currentId}
+           setCurrentId={setCurrentId}
           />
         </Grid>
       </Grid>
