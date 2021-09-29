@@ -2,114 +2,87 @@ import { makeStyles } from '@mui/styles'
 
 export const useStyles = makeStyles({
     additemContainer:{
-        position: 'absolute',
-        width: '500px',
-        height: '600px',
-        left: '555px',
-        top: '150x',
+        marin:'0',
+        display:'flex',
+        flexDirection:'row',
+        padding:'20px 10px 10px 10px',
+        width:'85%',
         background: '#FFFFFF',
         boxShadow: '0px 50px 60px -25px rgba(77, 108, 203, 0.31)',
-        borderRadius: '2px'
-    },
-    addNewProduct:{
-    position: 'absolute',
-    width: '500px',
-    height: '36px',
-    top: '10px',
-    fontFamily:' IBM Plex Sans',
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '28px',
-    lineHeight: '36px',
-    color: '#0F1730',
-    textAlign:'center'
+        borderRadius: '2px',
+        position:'fixed',
+        marginTop:'-100px',
+        background:'#2196f3'
     },
     ProductName:{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '0px',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%',
+        height: '30px',
         outline:'none',
-        top: '80px'
+        marginRight:'5px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
     },
     Quantity:{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '0px',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%', 
+        height: '30px', 
         outline:'none', 
-        top: '150px'
+        marginRight:'5px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
     },
     From:{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '0px',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%', 
+        height: '30px', 
         outline:'none', 
-        top: '220px'
+        marginRight:'5px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
+        
     },
     Owner:{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '0px',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%',
+        height: '30px',
         outline:'none',  
-        top: '290px'
+        marginRight:'5px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
     },
     Phone:{
-        display: 'flex',
-        flexDirection: 'column',
         alignItems: 'flex-start',
         padding: '0px',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%', 
+        height: '30px',
         outline:'none', 
-        top: '360px'
+        marginRight:'5px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
     },
     Price:{
-        display: 'flex',
-        flexDirection: 'column',
+        
         alignItems: 'flex-start',
         padding: '0px',
         outline:'none',
-        position: 'absolute',
-        height: '50px',
-        left: '33.06%',
-        right: '39.06%',  
-        top: '430px'
+        height: '30px',
+        textAlign:'center',
+        borderRadius: '5px',
+        borderStyle:'none'
+        
     },
     AddBtn:{
-        position: 'absolute',
-        width: '165px',
-        height: '51px',
-        left: '300px',
-        top: '520px',
-        borderRadius:'3px'
+        borderRadius:'3px',
+        background:'white',
+        color:'#000'
     },
     CancelBtn:{
-        position: 'absolute',
-        width: '165px',
-        height: '51px',
-        left: '100px',
-        top: '520px',
+        marginRight:'10px',
         borderRadius:'3px'
     }
 })
