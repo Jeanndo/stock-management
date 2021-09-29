@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Stock from '../components/stock/stock'
 import Dashboard from '../components/dashboard';
 import Landing from '../components/Landing/Landing'
-import ClentPage from '../components/clientPage/client'
+import ClientPage from '../components/clientPage/client'
 import Signup from '../components/Auth/Signup'
 import Login from '../components/Auth/SignIn'
 import Pricing from '../components/Landing/Pricing'
@@ -16,7 +16,7 @@ class Routes extends React.Component {
            <Route exact path="/" component={Landing}/>
             <Route exact path="/stock" component={Stock}/>
             <Route exact path="/dashboard" component={Dashboard}/>
-            <Route exact path="/homepage" component={ClentPage}/>
+            <Route exact path="/homepage" component={ClientPage}/>
             <Route exact path="/signup" component={Signup}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/pricing" component={Pricing}/>
