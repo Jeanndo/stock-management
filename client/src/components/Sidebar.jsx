@@ -39,25 +39,25 @@ const Sidebar = (props) => {
       <Divider/>
       <ListItem button onClick={handleDashboard}>
         <ListItemIcon>
-          <StoreIcon />
+          <StoreIcon style={{color:'#2196f3'}}/>
         </ListItemIcon>
         <ListItemText primary="Stock" />
       </ListItem>
       <ListItem button onClick={handleAllItems}>
         <ListItemIcon>
-          <ShoppingCartIcon />
+          <ShoppingCartIcon style={{color:'#2196f3'}}/>
         </ListItemIcon>
         <ListItemText primary="All Products" />
       </ListItem>
       <ListItem button onClick={handleAllUsers}>
         <ListItemIcon>
-          <PeopleTwoTone />
+          <PeopleTwoTone style={{color:'#2196f3'}}/>
         </ListItemIcon>
         <ListItemText primary="All Users" />
       </ListItem>
       <ListItem button onClick={handleReort}>
         <ListItemIcon>
-          <BarChartIcon />
+          <BarChartIcon style={{color:'#2196f3'}}/>
         </ListItemIcon>
         <ListItemText primary="Report" />
       </ListItem>

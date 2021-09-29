@@ -13,6 +13,7 @@ import GoogleLogin from 'react-google-login';
 const theme = createTheme();
 
 export default function SignUp() {
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -39,10 +40,14 @@ export default function SignUp() {
     console.log(error)
     console.log("Google Sing In was unsuccessful. Try Again Later");
    }
+
+  
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
+  
         <Box
           sx={{
             marginTop: 8,

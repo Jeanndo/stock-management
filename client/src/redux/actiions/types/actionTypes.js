@@ -1,0 +1,7 @@
+export const FETCH_PRODUCTS = 'FETCH_ALL'
+export const UPDATE_PRODUCT='UPDATE_PRODUCT'
+export const DELETE_PRODUCT='DELETE_PRODUCT'
+export const LOGIN='LOGIN'
+export const SIGNUP='SIGNUP'
+export const FETCH_USERS = 'FETCH_USERS'
+export const DELETE_USER = 'DELETE_USER'
