@@ -15,13 +15,12 @@ navContainer:{
     
 },
 welcome:{
-    width:'80%',
+    width:'70%',
     padding:'10px'
 },
 profile:{
-    float:'right',
-    width:'200px',
-    
+    marginTop:'5px',
+    width:'150px',
 },
 payment:{
     marginLeft:'2%',
