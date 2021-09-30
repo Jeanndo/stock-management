@@ -1,4 +1,4 @@
-import { AUTH } from "../../constants/actionTypes";
+import { AUTH } from "../actiions/types/actionTypes";
 
 import * as api from "../../api/index";
 
@@ -10,18 +10,21 @@ export const signin = (formData, history) => async (dispatch) => {
     dispatch({ type: AUTH, data });
 
     console.log(data?.result?.name);
-    if (data?.result?.role === "employee" || data?.result?.role === "EMPLOYEE") {
-      history.push("/driver");
+    if (
+      data?.result?.role === "agent" ||
+      data?.result?.role === "AGENT"
+    ) {
+      history.push("/dashboard");
     } else if (
       data?.result?.role === "admin" ||
       data?.result?.role === "ADMIN"
     ) {
-      history.push("/admin");
+      history.push("/dashboard");
     } else if (
       data?.result?.role === "client" ||
       data?.result?.role === "CLIENT"
     ) {
-      history.push("/client");
+      history.push("/homepage");
     }
   } catch (error) {
     console.log(error);
@@ -33,13 +36,20 @@ export const signup = (formData, history) => async (dispatch) => {
     //signup the user
     const { data } = await api.signUp(formData);
     dispatch({ type: AUTH, data });
-    if (data?.result?.role === "client") {
-      history.push("/client");
+    if (data?.result?.role === "agent") {
+      history.push("/dashboard");
     } else if (
       data?.result?.role === "admin" ||
       data?.result?.role === "ADMIN"
     ) {
-      history.push("/admin");
+      history.push("/dashboard");
+    }else if(data?.result?.role === "cashier"){
+      history.push("/dashboard");
+    }else if (
+      data?.result?.role === "client" ||
+      data?.result?.role === "CLIENT"
+    ) {
+      history.push("/homepage");
     }
   } catch (error) {
     console.log(error);

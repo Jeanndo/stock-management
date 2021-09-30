@@ -5,7 +5,7 @@ import AddUser from "../AddUser/AddUser";
 
 const AddUserModal = ({ handleOpen, open, handleClose }) => {
   return (
-    <div>
+    <div style={{marginTop:'-20px'}}>
       <Button onClick={handleOpen} style={{ float: "left" }} variant="outlined">
         <AddBoxIcon
           style={{

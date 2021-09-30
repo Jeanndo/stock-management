@@ -11,19 +11,19 @@ const AddItem = ({currentId,setCurrentId}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  //const product =useSelector((state)=>state.products)
-
+  const user = JSON.parse(localStorage.getItem('profile'));
+  
   const product = useSelector((state)=>currentId?state.products.find((p)=>p._id===currentId):null);
 
-  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:'',price:''})
+  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:Number,price:''})
  
   const handleSubmit = (event) => {
     event.preventDefault();
 
     if(currentId){
-      dispatch(updateProduct(currentId,addProduct))
+      dispatch(updateProduct(currentId,{...addProduct,name:user?.result?.name}))
      }else{
-       dispatch(createProduct(addProduct))
+       dispatch(createProduct({...addProduct,name:user?.result?.name}))
      }
      Clear()
   };

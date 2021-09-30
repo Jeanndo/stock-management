@@ -101,6 +101,7 @@ export const useStyles = makeStyles({
         borderRadius:'3px'
     },
     AuthBack:{
+        marginTop:'-20px',
         background: '#ffff'
     }
 })
