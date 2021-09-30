@@ -5,6 +5,9 @@ import { styled } from "@mui/material/styles";
 import Badge from "@mui/material/Badge";
 import Avatar from "@mui/material/Avatar";
 import Marquee from "react-fast-marquee";
+import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {useHistory,useLocation} from 'react-router-dom'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -36,18 +39,32 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 const UserNavBar = () => {
+
   const classes = useStyles();
+  const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')))
+
+  const dispatch = useDispatch();
+  const history = useHistory()
+  const location = useLocation()
+
+  const logout = ()=>{
+    dispatch({type:'LOGOUT'})
+    history.push('/')
+  
+    setUser(null)
+    }
+  
 
   return (
 
     <div className={classes.navContainer}>
       <div className={classes.welcome}>
         <Marquee>
-          <Typography>WELCOMA to STOCK MANAGEMENT SYSTEM</Typography>
+          <Typography>WELCOME to STOCK MANAGEMENT SYSTEM</Typography>
         </Marquee>
       </div>
       <div className={classes.profile}>
-        <Typography>
+        
           <StyledBadge
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -59,7 +76,14 @@ const UserNavBar = () => {
             />
           </StyledBadge>
           <label>Jeanndo</label>
-        </Typography>
+          <Button 
+            variant="contained" 
+            color="secondary"
+            style={{marginRight:'-100px',float:'right'}}
+            onClick={logout} 
+            >Logout
+            </Button>
+       
       </div>
     </div>
   );
