@@ -12,8 +12,19 @@ import Avatar from '@mui/material/Avatar';
 import Divider from "@mui/material/Divider"
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { ListItemAvatar } from "@mui/material";
+import Report from  './printReport/print'
 
 const Sidebar = (props) => {
+
+const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')));
+
+
+React.useEffect(()=>{
+  //const token = user.token
+  //jwt
+  setUser(JSON.parse(localStorage.getItem('profile')))
+},[])
+
   const handleDashboard = () => {
     props.setContents(<Stock/>);
   };
@@ -25,8 +36,8 @@ const Sidebar = (props) => {
   const handleAllUsers = () => {
     props.setContents(<AllUsers />);
   };
-  const handleReort = () => {
-    props.setContents("Report");
+  const handleReport = () => {
+    props.setContents(<Report/>);
   };
   return (
     <div>
@@ -55,7 +66,7 @@ const Sidebar = (props) => {
         </ListItemIcon>
         <ListItemText primary="All Users" />
       </ListItem>
-      <ListItem button onClick={handleReort}>
+      <ListItem button onClick={handleReport}>
         <ListItemIcon>
           <BarChartIcon style={{color:'#2196f3'}}/>
         </ListItemIcon>
