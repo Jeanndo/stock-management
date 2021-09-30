@@ -8,41 +8,26 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import GoogleLogin from 'react-google-login';
+import { useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom';
+import { signup } from "../../redux/actiions/auth";
 
 const theme = createTheme();
+const initialState = {firstName:'',lastName:'',phone:'',email:'',password:'',confirmPassword:''};
 
 export default function SignUp() {
 
+  const [formData,setFormData] = React.useState(initialState)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    dispatch(signup(formData,history))
   };
-
-  const  googleSuccess =  async (res)=>{
-    //   const result = res?.profileObj;
-    //   const token = res?.tokenId;
-  
-    // try {
-    //     dispatch({type:'AUTH',data:{result,token}});
-         
-    //     history.push('/');
-    // } catch (error) {
-    //    console.log(error);
-    // }
-  }
-  const  googleFailure =(error)=>{
-    console.log(error)
-    console.log("Google Sing In was unsuccessful. Try Again Later");
+   const handleChange = (event)=>{
+    setFormData({...formData,[event.target.name]:event.target.value})
    }
-
-  
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -75,6 +60,7 @@ export default function SignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -85,6 +71,18 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="phone"
+                  label="Phone"
+                  name="phone"
+                  autoComplete="phone"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -95,6 +93,7 @@ export default function SignUp() {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  onChange={handleChange}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -106,6 +105,19 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="confirmPassword"
+                  label="confirm Password"
+                  type="password"
+                  id="confirmPassword"
+                  autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -117,23 +129,6 @@ export default function SignUp() {
             >
               Sign Up
             </Button>
-            <GoogleLogin
-             clientId="65688288942-pf0sgh5gcvnneskbgspl6mel27bbuf91.apps.googleusercontent.com"
-              render={(renderProps)=>(
-                 <Button 
-                 variant="outlined"
-                  color="primary" 
-                  fullWidth
-                   onClick={renderProps.onClick} 
-                   disabled={renderProps.deisabled}
-                   >
-                        Google Sign In
-                    </Button>
-              )}
-              onSuccess={googleSuccess}
-              onFailure={googleFailure}
-              cookiePolicy = "single_host_origin"
-             />
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link to="/login" variant="body2">
@@ -147,3 +142,6 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+
+
