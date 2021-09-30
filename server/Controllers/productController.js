@@ -1,10 +1,14 @@
 import PRODUCT from "../models/productModel.js";
 import mongoose from "mongoose";
+import twilio from 'twilio'
+import dotenv from 'dotenv'
+
+dotenv.config();
 
 export const getAllProducts = async (req, res) => {
   try {
     const products = await PRODUCT.find();
-    console.log("Backend:Produdcts",products )
+    console.log("Backend:Produdcts", products);
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -13,8 +17,25 @@ export const getAllProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   const product = req.body;
-  
-  const newProduct = new PRODUCT(product);
+  const {phone} =req.body;
+  console.log("phone:",phone)
+
+  const accountSid = 'ACd73d710919b75c3958a7f0a31e11495f'; // Your Account SID from www.twilio.com/console
+  const authToken = process.env.AUTH_TOKEN // Your Auth Token from www.twilio.com/console  
+
+  // const twilio = require('twilio');
+  const client = new twilio(accountSid, authToken);
+
+  client.messages
+    .create({
+      body: 'Your produ arrieved at STOCK MANAGEMENT SYSTEM thank you to store with us!!',
+      to: `+25${phone}`, // Text this number
+      from: '+16282579513', // From a valid Twilio number
+    })
+    .then((message) => console.log(message.sid));
+
+
+  const newProduct = new PRODUCT({...product,creator:req.userId,createdAt:new Date().toISOString()});
   try {
     await newProduct.save();
     res.status(201).json(newProduct);
