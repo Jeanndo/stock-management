@@ -16,7 +16,9 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "./Sidebar";
 import Stock from './stock/stock'
-
+import { Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {useHistory,useLocation} from 'react-router-dom'
 
 const drawerWidth = 240;
 
@@ -71,8 +73,20 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')))
 
   const [contents, setContents] = React.useState(<Stock/>);
+  const dispatch = useDispatch();
+  const history = useHistory()
+  const location = useLocation()
+
+  const logout = ()=>{
+  dispatch({type:'LOGOUT'})
+  history.push('/')
+
+  setUser(null)
+  }
+
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -104,6 +118,13 @@ function DashboardContent() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+            <Button 
+            variant="contained" 
+            color="secondary"
+            style={{marginLeft:'5px'}}
+            onClick={logout} 
+            >Logout
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
