@@ -5,7 +5,6 @@ import { useDispatch,useSelector } from 'react-redux';
 import {createProduct,updateProduct} from '../../redux/actiions/product';
 
 
-
 const AddItem = ({currentId,setCurrentId}) => {
 
   const classes = useStyles();
@@ -21,9 +20,9 @@ const AddItem = ({currentId,setCurrentId}) => {
     event.preventDefault();
 
     if(currentId){
-      dispatch(updateProduct(currentId,{...addProduct,name:user?.result?.name}))
+      dispatch(updateProduct(currentId,{...addProduct,name:user?.result?.name,email:user?.result?.email}))
      }else{
-       dispatch(createProduct({...addProduct,name:user?.result?.name}))
+       dispatch(createProduct({...addProduct,name:user?.result?.name,email:user?.result?.email}))
      }
      Clear()
   };

@@ -1,9 +1,6 @@
 import { useStyles } from "./styles";
-import Branches from "./Branches";
 import Navigation from "./Navigation";
 import "./Banner.css";
-import Contact from "./Contact";
-import About from './About'
 
 const Landing = () => {
   const classes = useStyles();
@@ -21,18 +18,6 @@ const Landing = () => {
           src="https://cdn.pixabay.com/photo/2014/09/04/11/03/supermarket-435452_960_720.jpg"
         />
       </div>
-      <div style={{ textAlign: "center" }}>
-        <h2>OUR BRANCHES</h2>
-        <div className={classes.branches}>
-          <Branches />
-          <Branches />
-          <Branches />
-          <Branches />
-          <Branches />
-        </div>
-      </div>
-      <About/>
-      <Contact/>
     </>
   );
 };

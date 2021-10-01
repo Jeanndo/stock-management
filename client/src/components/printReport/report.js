@@ -9,14 +9,12 @@ import Paper from "@mui/material/Paper";
 import { useSelector } from "react-redux";
 import { getProducts} from "../../redux/actiions/product";
 import { useDispatch } from "react-redux";
-import PayModal from "./Modal";
-import { Button } from "@mui/material";
-import {Link} from "react-router-dom"
+import Printer from './print'
 
 const UserTable = ()=>{
 
     const dispatch = useDispatch();
-    const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')))
+
     React.useEffect(() => {
       dispatch(getProducts());
     }, [dispatch]);
@@ -24,9 +22,9 @@ const UserTable = ()=>{
     const products = useSelector((state) => state.products);
     console.log("prod",products)
     return  (
-      <>
-        { user?.result?.name==='client'?(
-          <TableContainer component={Paper}>
+        <>
+        {/* <Printer/> */}
+        <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -51,9 +49,6 @@ const UserTable = ()=>{
               <TableCell align="right">
                 <b>Date</b>
               </TableCell>
-              <TableCell align="right">
-                <b>Pay</b>
-              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -71,24 +66,12 @@ const UserTable = ()=>{
                 <TableCell align="right">{product.phone}</TableCell>
                 <TableCell align="right">{product.price}</TableCell>
                 <TableCell align="right">{product.createdAt}</TableCell>
-                <TableCell align="right"><PayModal/></TableCell>
                 
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>  
-        ):(
-          <>
-          <div style={{textAlign:'center',color:'red'}}>
-          <h2>Access Denied. This means you don't have permission to view this page!</h2>
-          <Button variant="contained"color="primary"style={{color:'white'}}>
-            <Link to="/">Go Back</Link>
-          </Button>
-         </div>
-          </>
-        )
-      }
       </>
     )
 }

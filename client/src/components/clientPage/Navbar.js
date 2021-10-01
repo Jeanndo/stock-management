@@ -54,37 +54,42 @@ const UserNavBar = () => {
     setUser(null)
     }
   
-
+  console.log("user",user)
   return (
-
+   
     <div className={classes.navContainer}>
-      <div className={classes.welcome}>
-        <Marquee>
-          <Typography>WELCOME to STOCK MANAGEMENT SYSTEM</Typography>
-        </Marquee>
-      </div>
-      <div className={classes.profile}>
-        
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-          >
-            <Avatar
-              alt="user"
-              src="https://avatars.githubusercontent.com/u/59208992?s=48&v=4"
-            />
-          </StyledBadge>
-          <label>Jeanndo</label>
-          <Button 
-            variant="contained" 
-            color="secondary"
-            style={{marginRight:'-100px',float:'right'}}
-            onClick={logout} 
-            >Logout
-            </Button>
-       
-      </div>
+
+      {user?.result?.role==='client'&&(
+         <>
+         <div className={classes.welcome}>
+         <Marquee>
+           <Typography>WELCOME to STOCK MANAGEMENT SYSTEM</Typography>
+         </Marquee>
+       </div>
+       <div className={classes.profile}>
+         
+           <StyledBadge
+             overlap="circular"
+             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+             variant="dot"
+           >
+             <Avatar
+               alt="user"
+             >
+               {user?.result?.name.charAt(0).toUpperCase()}
+            </Avatar>
+           </StyledBadge>
+           <label>{user?.result?.name}</label>
+           <Button 
+             variant="contained" 
+             style={{marginRight:'-100px',float:'right',backgroundColor:'#ffff',color:'#000'}}
+             onClick={logout} 
+             >Logout
+             </Button>
+       </div>
+       </>
+      )
+      }
     </div>
   );
 };
