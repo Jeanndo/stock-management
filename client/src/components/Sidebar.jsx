@@ -18,7 +18,7 @@ const Sidebar = (props) => {
 
 const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')));
 
-
+console.log(user?.result?.role==="admin")
 React.useEffect(()=>{
   //const token = user.token
   //jwt
@@ -43,9 +43,11 @@ React.useEffect(()=>{
     <div>
       <ListItem>
       <ListItemAvatar>
-        <Avatar alt="user" src="https://avatars.githubusercontent.com/u/59208992?v=4" />
+        <Avatar alt="user">
+        {user?.result?.name.charAt(0).toUpperCase()}
+          </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="User"/>
+        <ListItemText primary={`${user?.result?.name}`}/>
       </ListItem>
       <Divider/>
       <ListItem button onClick={handleDashboard}>
@@ -60,7 +62,9 @@ React.useEffect(()=>{
         </ListItemIcon>
         <ListItemText primary="All Products" />
       </ListItem>
-      <ListItem button onClick={handleAllUsers}>
+      {user?.result?.role==="admin"&&(
+        <>
+        <ListItem button onClick={handleAllUsers}>
         <ListItemIcon>
           <PeopleTwoTone style={{color:'#2196f3'}}/>
         </ListItemIcon>
@@ -72,6 +76,8 @@ React.useEffect(()=>{
         </ListItemIcon>
         <ListItemText primary="Report" />
       </ListItem>
+      </>
+      )}
     </div>
   );
 };

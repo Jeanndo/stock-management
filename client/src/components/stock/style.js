@@ -17,23 +17,25 @@ export const useStyles = makeStyles({
         flexDirection:'row'
     },
     users:{
+        marginTop:'50px',
         borderRadius:'100%',
-        width:'300px',
-        marginLeft:'40px',
+        width:'200px',
+        marginLeft:'150px',
         marginRight:'20px',
-        height:'300px',
+        height:'200px',
         backgroundColor:'#39c3ff',
         textAlign:'center'
     },
     Products:{
+        marginTop:'50px',
         borderRadius:'100%',
-        width:'300px',
-        height:'300px',
+        width:'200px',
+        height:'200px',
         backgroundColor:'#757de8',
         textAlign:'center'
     },
     heading1:{
-        marginTop:'120px',
+        marginTop:'50px',
         fontWeight:400,
         fontSize:'25px',
         lineHeight:1.7,

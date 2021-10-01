@@ -15,7 +15,15 @@ export const signin = (formData, history) => async (dispatch) => {
       data?.result?.role === "AGENT"
     ) {
       history.push("/dashboard");
-    } else if (
+
+    } 
+    else if (
+      data?.result?.role === "cashier" ||
+      data?.result?.role === "CASHIER"
+    ) {
+      history.push("/dashboard");
+    }
+    else if (
       data?.result?.role === "admin" ||
       data?.result?.role === "ADMIN"
     ) {

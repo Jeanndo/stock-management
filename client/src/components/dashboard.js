@@ -110,7 +110,7 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1 }}>
+            <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1 }}style={{textAlign:'center'}}>
               STOCK MANAGEMENT SYSTEM
             </Typography>
             <IconButton color="inherit">
@@ -120,8 +120,7 @@ function DashboardContent() {
             </IconButton>
             <Button 
             variant="contained" 
-            color="secondary"
-            style={{marginLeft:'5px'}}
+            style={{marginLeft:'5px',backgroundColor:'#fff',color:'#000'}}
             onClick={logout} 
             >Logout
             </Button>

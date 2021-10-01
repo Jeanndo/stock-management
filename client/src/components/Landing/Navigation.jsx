@@ -9,21 +9,6 @@ const Navigation = () => {
     <div>
       <ul className={classes.NavItems}>
         <li className={classes.ListItems}>
-          <Link to="/pricing" style={{ textDecoration: "none" }}>
-            PRICING
-          </Link>
-        </li>
-        <li className={classes.ListItems}>
-          <Link to="/About" style={{ textDecoration: "none" }}>
-            ABOUT
-          </Link>
-        </li>
-        <li className={classes.ListItems}>
-          <Link to="/contact us" style={{ textDecoration: "none" }}>
-            CONTACT
-          </Link>
-        </li>
-        <li className={classes.ListItems}>
           <Link to="/login" style={{ textDecoration: "none", float: "right" }}>
             LOGIN
           </Link>

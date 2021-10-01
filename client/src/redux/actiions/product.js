@@ -2,7 +2,8 @@ import {
   FETCH_PRODUCTS,
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
-  CREATE_PRODUCT
+  CREATE_PRODUCT,
+ 
 } from '../actiions/types/actionTypes'
 
 
@@ -47,7 +48,6 @@ export const updateProduct = (id,product)=>async (dispatch)=>{
 
   export const deleteProduct = (id)=> async (dispatch)=>{
 
-
     try {
       await api.deleteProduct(id)
   
@@ -56,3 +56,5 @@ export const updateProduct = (id,product)=>async (dispatch)=>{
       console.log(error);
     }
   }
+
+  

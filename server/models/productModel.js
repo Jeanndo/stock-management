@@ -7,6 +7,8 @@ const productSchema = mongoose.Schema({
   owner:String,
   phone:Number,
   price:Number,
+  name:String,
+  email:String,
   createdAt:{
     type:Date,
     default:new Date()
