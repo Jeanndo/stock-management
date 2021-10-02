@@ -18,7 +18,6 @@ const Sidebar = (props) => {
 
 const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')));
 
-console.log(user?.result?.role==="admin")
 React.useEffect(()=>{
   //const token = user.token
   //jwt
