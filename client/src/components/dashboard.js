@@ -9,17 +9,15 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import SideBar from "./Sidebar";
 import Stock from './stock/stock'
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 import {useHistory,useLocation} from 'react-router-dom'
-
+import Marquee from "react-fast-marquee";
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -110,14 +108,11 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
+            <Marquee>
             <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1 }}style={{textAlign:'center'}}>
-              STOCK MANAGEMENT SYSTEM
+              STOCK MANAGEMENT SYSTEM || Hello {user?.result?.name?.toUpperCase()}
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            </Marquee>
             <Button 
             variant="contained" 
             style={{marginLeft:'5px',backgroundColor:'#fff',color:'#000'}}
