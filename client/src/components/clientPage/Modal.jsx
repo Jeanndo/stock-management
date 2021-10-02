@@ -11,7 +11,7 @@ const PayModal = () => {
   const handleClose = () => setOpen(false);
 
   return (
-    <div >
+    <div style={{float:'right'}}>
       <Button onClick={handleOpen} style={{ float: "left" }} variant="outlined">
         Pay 
       </Button>
