@@ -11,7 +11,7 @@ const productSchema = mongoose.Schema({
   email:String,
   createdAt:{
     type:Date,
-    default:new Date()
+    default:new Date().toDateString()
   }
 })
 

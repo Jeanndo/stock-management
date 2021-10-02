@@ -2,8 +2,6 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import {Link }from "react-router-dom";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
@@ -13,36 +11,49 @@ import {useHistory} from 'react-router-dom';
 import { signin } from "../../redux/actiions/auth";
 import Marquee from "react-fast-marquee";
 
-
-const initialState = {email:'',password:''};
+const initialState = {password:''};
 
 const theme = createTheme();
 
-export default function SignIn() {
+const  ResetPassword =()=>{
 
   const [formData,setFormData] = React.useState(initialState)
+  
+  const [submited,setSubmited ]=React.useState(false)
+
+
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(signin(formData,history))
-   
+   // dispatch(signin(formData,history))
+     setSubmited(!submited)
   };
 
   const handleChange = (event)=>{
     setFormData({...formData,[event.target.name]:event.target.value})
   }
 
+ const handleCancel = ()=>{
+   history.push('/login')
+ }
+console.log("check",submited)
+
+const handleBack = ()=>{
+    history.push('/login')
+}
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs" style={{backgroundColor:'#3f51b5',padding:'20px',marginTop:'50px'}}>
+    <>
+    {!submited?(
+        <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs"style={{backgroundColor:'#3f51b5',padding:'20px',marginTop:'50px'}}>
         <CssBaseline />
         <Marquee>
-        <Typography component="h1" variant="h5"style={{color:'white'}}>
-            Sign in
+          <Typography component="h1" variant="h5" style={{color:'white'}}>
+            Change your password then hit submit 
           </Typography>
-        </Marquee>
+          </Marquee>
         <Box
           sx={{
             marginTop: 8,
@@ -52,6 +63,7 @@ export default function SignIn() {
           }}
           style={{backgroundColor:'white',padding:'10px'}}
         >
+          
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -62,47 +74,50 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="password"
+              label="Password"
+              name="password"
+              autoComplete="password"
               autoFocus
              onChange={handleChange}
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              onChange={handleChange}
-            />
+           
             <Button
               type="submit"
               fullWidth
               variant="outlined"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Submit
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/forgot-password" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link to="/signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
+            <Button
+              fullWidth
+              variant="outlined"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleCancel}
+            >
+            Cancel
+            </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
+    ):(
+        <div style={{backgroundColor:'#3f51b5',padding:'10px',marginTop:'50px',width:'400px',marginLeft:'400px',textAlign:'center'}}>
+        <Typography component="h1" variant="h5" style={{color:'white'}}>
+            Return to login page.
+          </Typography>
+          <Button variant="contained" style={{backgroundColor:'white',color:'#000'}}
+          onClick={handleBack}
+          >
+            Login 
+          </Button>
+        </div>
+    )
+    }
+    </>
   );
 }
+
+
+export default ResetPassword

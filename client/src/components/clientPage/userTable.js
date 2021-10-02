@@ -25,7 +25,7 @@ const UserTable = ()=>{
     console.log("prod",products)
     return  (
       <>
-        { user?.result?.name==='client'?(
+        { user?.result?.role==='client'?(
           <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -58,7 +58,8 @@ const UserTable = ()=>{
           </TableHead>
           <TableBody>
             {products.map((product) => (
-              <TableRow
+              user?.result?.phone===product.phone&&(
+                <TableRow
                 key={product._id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
@@ -74,6 +75,7 @@ const UserTable = ()=>{
                 <TableCell align="right"><PayModal/></TableCell>
                 
               </TableRow>
+              )
             ))}
           </TableBody>
         </Table>

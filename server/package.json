@@ -19,6 +19,7 @@
     "flutterwave-node": "^1.2.2",
     "flutterwave-node-v3": "^1.0.9",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "mongoose": "^6.0.6",
     "nodemon": "^2.0.12",
     "twilio": "^3.68.0"

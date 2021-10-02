@@ -8,6 +8,9 @@ import Signup from '../components/Auth/Signup'
 import Login from '../components/Auth/SignIn'
 import Pricing from '../components/Landing/Pricing'
 import About from '../components/Landing/About';
+import ForgotPassword from '../components/Auth/ForgotPassward';
+import ResetPassword from '../components/Auth/resetPassword';
+
 class Routes extends React.Component {
     render() {
       return (
@@ -21,10 +24,11 @@ class Routes extends React.Component {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/pricing" component={Pricing}/>
             <Route exact path="/about" component={About}/>
+            <Route exact path="/forgot-password" component={ForgotPassword}/>
+            <Route exact path="/reset-password" component={ResetPassword}/>
           </Switch>
         </Router>
       );
     }
   }
-  
   export default Routes;

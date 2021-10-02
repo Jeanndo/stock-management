@@ -11,6 +11,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom';
 import { signup } from "../../redux/actiions/auth";
+import Marquee from "react-fast-marquee";
 
 const theme = createTheme();
 const initialState = {firstName:'',lastName:'',phone:'',email:'',password:'',confirmPassword:''};
@@ -30,9 +31,13 @@ export default function SignUp() {
    }
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={{backgroundColor:'#3f51b5',padding:'20px'}}>
         <CssBaseline />
-  
+        <Marquee>
+        <Typography component="h1" variant="h5" style={{color:'white'}}>
+            Sign up
+          </Typography>
+          </Marquee>
         <Box
           sx={{
             marginTop: 8,
@@ -40,10 +45,8 @@ export default function SignUp() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          style={{backgroundColor:'white',padding:'10px'}}
         >
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
           <Box
             component="form"
             noValidate
