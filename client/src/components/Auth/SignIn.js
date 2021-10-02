@@ -11,6 +11,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom';
 import { signin } from "../../redux/actiions/auth";
+import Marquee from "react-fast-marquee";
+
 
 const initialState = {email:'',password:''};
 
@@ -34,8 +36,13 @@ export default function SignIn() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs" style={{backgroundColor:'#3f51b5',padding:'20px',marginTop:'50px'}}>
         <CssBaseline />
+        <Marquee>
+        <Typography component="h1" variant="h5"style={{color:'white'}}>
+            Sign in
+          </Typography>
+        </Marquee>
         <Box
           sx={{
             marginTop: 8,
@@ -43,10 +50,8 @@ export default function SignIn() {
             flexDirection: "column",
             alignItems: "center",
           }}
+          style={{backgroundColor:'white',padding:'10px'}}
         >
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
@@ -85,8 +90,8 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
-                  {/* Forgot password? */}
+                <Link to="/forgot-password" variant="body2">
+                  Forgot password?
                 </Link>
               </Grid>
               <Grid item>
