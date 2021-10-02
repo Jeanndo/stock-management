@@ -1,4 +1,4 @@
-import { AUTH } from "../actiions/types/actionTypes";
+import { AUTH ,FORGOT_PASSWORD,RESET_PASSWORD} from "../actiions/types/actionTypes";
 
 import * as api from "../../api/index";
 
@@ -63,3 +63,22 @@ export const signup = (formData, history) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const forgotPassword = (email)=>async(dispatch)=>{
+  try {
+    await api.forgotPassword(email)
+    dispatch({ type: FORGOT_PASSWORD, email });
+  } catch (error) {
+    console.log(error.message)
+  }
+}
+
+export const resetPassword = (resetInfo)=>async(dispatch)=>{
+
+try {
+  const {data} = await api.resetPassword(resetInfo)
+  dispatch({ type: RESET_PASSWORD, data });
+} catch (error) {
+  console.log(error.message)
+}
+}

@@ -36,12 +36,15 @@ export default function SignUp() {
     // }
 
     dispatch(signup(formData,history))
+    clear()
   };
 
   const handleChange = (event)=>{
     setFormData({...formData,[event.target.name]:event.target.value})
   }
-
+ const clear = ()=>{
+   setFormData({firstName:'',lastName:'',role:'',phone:'',email:'',password:'',confirmPassword:''})
+ }
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs" className={classes.AuthBack} >
