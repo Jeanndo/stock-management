@@ -8,7 +8,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { signin } from "../../redux/actiions/auth";
+import { forgotPassword} from "../../redux/actiions/auth";
 import Marquee from "react-fast-marquee";
 
 const initialState = { email: "" };
@@ -23,7 +23,7 @@ const ForgotPassword = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    //dispatch(signin(formData,history))
+    dispatch(forgotPassword(formData))
     setSubmited(!submited);
   };
 

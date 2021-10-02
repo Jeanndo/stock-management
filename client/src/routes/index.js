@@ -25,7 +25,7 @@ class Routes extends React.Component {
             <Route exact path="/pricing" component={Pricing}/>
             <Route exact path="/about" component={About}/>
             <Route exact path="/forgot-password" component={ForgotPassword}/>
-            <Route exact path="/reset-password" component={ResetPassword}/>
+            <Route exact path={`/reset-password/:${this.props.token}`} component={ResetPassword}/>
           </Switch>
         </Router>
       );

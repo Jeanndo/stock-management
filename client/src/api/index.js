@@ -24,4 +24,5 @@ export const signUp = (formData)=>API.post('/user/signup',formData);
 
 export const fetchUsers =()=>API.get('/user');
 export const deleteUser = (id)=>API.delete(`/user/${id}`);
-
+export const forgotPassword = (email)=>API.patch(`/user/forgot-password`,email);
+export const resetPassword = (resetInfo)=>API.patch('/user/reset-password',resetInfo);
