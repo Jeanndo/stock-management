@@ -11,6 +11,14 @@ const userSchema = mongoose.Schema({
     email:{type:String,required:true},
     password:{type:String,required:true},
     id:{type:String},
+    createdAt:{
+        type:Date,
+        default:new Date().toDateString()
+    },
+    resetLink:{
+        data:String,
+        default:''
+    }
 })
 
 const USER = mongoose.model('USER',userSchema);
