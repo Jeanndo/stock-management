@@ -15,10 +15,7 @@ const userSchema = mongoose.Schema({
         type:Date,
         default:new Date().toDateString()
     },
-    resetLink:{
-        data:String,
-        default:''
-    }
+    passwordResetToken:String
 })
 
 const USER = mongoose.model('USER',userSchema);
