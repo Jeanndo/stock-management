@@ -14,7 +14,7 @@ const AddItem = ({currentId,setCurrentId}) => {
   
   const product = useSelector((state)=>currentId?state.products.find((p)=>p._id===currentId):null);
 
-  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:Number,price:''})
+  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:Number,email:'',price:''})
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ useEffect(()=>{
   const Clear = ()=>{
     setCurrentId(null);
 
-    setAddProduct({productName:'',quantity:'',from:'',owner:'',phone:'',price:''});
+    setAddProduct({productName:'',quantity:'',from:'',owner:'',phone:'',email:'',price:''});
   
 }
 
@@ -75,6 +75,13 @@ useEffect(()=>{
           className={classes.Phone}
           value={addProduct.phone}
           onChange={(event)=>setAddProduct({...addProduct,phone:event.target.value})}
+        />
+         <input
+          type="email"
+          placeholder="client email"
+          className={classes.Phone}
+          value={addProduct.email}
+          onChange={(event)=>setAddProduct({...addProduct,email:event.target.value})}
         />
         <input
          type="number" 

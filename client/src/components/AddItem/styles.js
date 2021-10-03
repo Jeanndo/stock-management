@@ -15,6 +15,7 @@ export const useStyles = makeStyles({
         background:'#2196f3'
     },
     ProductName:{
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         height: '30px',
@@ -25,6 +26,7 @@ export const useStyles = makeStyles({
         borderStyle:'none'
     },
     Quantity:{
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         height: '30px', 
@@ -35,6 +37,7 @@ export const useStyles = makeStyles({
         borderStyle:'none'
     },
     From:{
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         height: '30px', 
@@ -46,6 +49,7 @@ export const useStyles = makeStyles({
         
     },
     Owner:{
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         height: '30px',
@@ -56,6 +60,7 @@ export const useStyles = makeStyles({
         borderStyle:'none'
     },
     Phone:{
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         height: '30px',
@@ -66,7 +71,7 @@ export const useStyles = makeStyles({
         borderStyle:'none'
     },
     Price:{
-        
+        width:'150px',
         alignItems: 'flex-start',
         padding: '0px',
         outline:'none',

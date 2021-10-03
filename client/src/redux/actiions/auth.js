@@ -73,11 +73,12 @@ export const forgotPassword = (email)=>async(dispatch)=>{
   }
 }
 
-export const resetPassword = (resetInfo)=>async(dispatch)=>{
+export const resetPassword = (formData)=>async(dispatch)=>{
 
 try {
-  const {data} = await api.resetPassword(resetInfo)
-  dispatch({ type: RESET_PASSWORD, data });
+  const {data} = await api.resetPassword(formData)
+  console.log("data",data)
+  dispatch({ type: RESET_PASSWORD,data});
 } catch (error) {
   console.log(error.message)
 }

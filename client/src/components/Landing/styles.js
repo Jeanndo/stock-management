@@ -33,7 +33,7 @@ export const useStyles = makeStyles({
     position: "absolute",
     height: "23px",
     width: "800px",
-    marginLeft: "400px",
+    marginLeft: "400px"
   },
   ListItems: {
     marginRight: "20px",
@@ -41,7 +41,8 @@ export const useStyles = makeStyles({
     lineHeight: 1.7,
     fontSize: "16px",
     color: "#000",
-    paddingLeft: "20px",
+    // paddingLeft: "20px",
+    marginLeft: "100px"
   },
   heading1: {
     fontWeight: 400,

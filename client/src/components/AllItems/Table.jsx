@@ -40,6 +40,9 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                   <b>Owner Phone Number</b>
                 </TableCell>
                 <TableCell align="right">
+                  <b>email</b>
+                </TableCell>
+                <TableCell align="right">
                   <b>Price </b>
                 </TableCell>
                 <TableCell align="right">
@@ -68,6 +71,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                       <TableCell align="right">{product.from}</TableCell>
                       <TableCell align="right">{product.owner}</TableCell>
                       <TableCell align="right">{product.phone}</TableCell>
+                      <TableCell align="right">{product?.email}</TableCell>
                       <TableCell align="right">{product.price}</TableCell>
                       <TableCell align="right">{product.createdAt}</TableCell>
                       <TableCell align="right">
@@ -119,6 +123,9 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                     <b>Owner Phone Number</b>
                   </TableCell>
                   <TableCell align="right">
+                    <b>email</b>
+                  </TableCell>
+                  <TableCell align="right">
                     <b>Price </b>
                   </TableCell>
                   <TableCell align="right">
@@ -145,6 +152,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                     <TableCell align="right">{product.from}</TableCell>
                     <TableCell align="right">{product.owner}</TableCell>
                     <TableCell align="right">{product.phone}</TableCell>
+                    <TableCell align="right">{product?.email}</TableCell>
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">{product.createdAt}</TableCell>
                     <TableCell align="right">

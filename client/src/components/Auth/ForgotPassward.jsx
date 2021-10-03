@@ -38,6 +38,8 @@ const ForgotPassword = () => {
   const handleBack = () => {
     history.push("/login");
   };
+
+  console.log("email",formData)
   return (
     <>
       {!submited ? (
