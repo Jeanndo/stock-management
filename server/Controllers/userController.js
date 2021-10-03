@@ -3,18 +3,22 @@ import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 import mongoose from "mongoose";
 import _ from "lodash";
+import sendEmail from "../utils/email.js";
 
 export const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const existingUser = await User.findOne({ email });
+    console.log("user", password, existingUser.password);
+
     if (!existingUser)
       return res.status(404).json({ message: "User doesn't exist" });
     const isPasswordCorrect = await bcrypt.compare(
       password,
       existingUser.password
     );
+    console.log("is correct", isPasswordCorrect);
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid Credentials" });
     const token = jwt.sign(
@@ -30,7 +34,6 @@ export const signin = async (req, res) => {
 export const signup = async (req, res) => {
   const { email, password, confirmPassword, firstName, lastName, role, phone } =
     req.body;
-  console.log(req.body);
   try {
     const existingUser = await User.findOne({ email });
     if (existingUser)
@@ -59,7 +62,6 @@ export const signup = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const allUsers = await User.find();
-    console.log(allUsers);
     res.status(200).json(allUsers);
   } catch (error) {
     console.log(error);
@@ -72,84 +74,72 @@ export const deleteUser = async (req, res) => {
     return res.status(404).send("Not User With that id");
 
   await User.findByIdAndRemove(_id);
-  console.log("Deleted");
   res.json({ message: "User Removed Successfully!!👍" });
 };
 
 export const forgotPassword = async (req, res) => {
-  const { email } = req.body;
-
-  const existingUser = await User.findOne({ email });
-  if (!existingUser) {
+  //1) Get user based on posted email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
     return res
-      .status(400)
-      .json({ message: "User with this eamil doesn't exist" });
-  } else {
-    const token = jwt.sign({ id: existingUser._id }, "reset", {
-      expiresIn: "20m",
+      .status(404)
+      .json({ message: "There is no user with that email address" });
+  }
+  //2) Generate random reset token
+  const resetToken = jwt.sign({ id: user._id }, "test", { expiresIn: "20m" });
+  await user.updateOne({ passwordResetToken: resetToken });
+  //3)Send it to user's email
+  const resetURL = `http://localhost:3000/reset-password/${resetToken}`;
+
+  const message = `Forgot your password! please submit a PATCH request with your new password and confirmPassword to:${resetURL}.\n If you didn't forget your password please ignore this email.`;
+
+  //3) send email
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Your password Reset Token (valid for 20 min )",
+      message,
     });
-    const data = {
-      from: "stockman@gmail.com",
-      to: email,
-      subject: "Account Reseting Link",
-      html: `
-      <h2>Please click the given link to reset your password<h2/>
-      <p>http://localhost:3000/reset-password/${token}<p/>
-      `,
-    };
-    return User.updateOne({ resetLink: token }, (error, success) => {
-      if (error) {
-        return res.status(400).json({ message: "reset password link error" });
-      } else {
-        mg.message().send(data, (error, body) => {
-          if (error) {
-            return res.json({
-              error: error.message,
-            });
-          }
-          return res.json({
-            Message: "email has been sent kindly reset your password",
-          });
-        });
-      }
+    res.status(200).json({
+      status: "sucess",
+      message: "Token sent to email",
     });
+  } catch (error) {
+    user.passwordResetToken = undefined;
+    //  user.passwordResetTokenEpires = undefined
+    await user.save({ validateBeforeSave: false });
+    return res.status(500).json({ message: error });
   }
 };
 
 export const resetPassword = async (req, res) => {
+  //1) Get user based on token
+  const { passwordResetToken } = req.body;
 
-  const { resetLink, newPass } = req.body;
-  if (resetLink) {
-    jwt.verify(resetLink, "reset", async(error, decodedData) => {
-      if (error) {
-        return res.status(401).json({
-          error: "Invalid Token or expired",
-        });
-      }
-      const user = await User.findOne({ resetLink });
-      if (!user) {
-        return res.status(400).json({
-          error: "User with this token does not exist",
-        });
-      }
-      const obj = {
-        password: newPass,
-        resetLink:''
-      };
-      user = _.extend(user, obj);
+  console.log("body", req.body);
 
-      try {
-        await User.save();
-        res.status(200).json({
-          message: "your password has been changed",
-        });
-      } catch (error) {
-        res.status(400).json({
-          error: "Reset passwor error",
-        });
-      }
-    });
-  } else {
-    res.status(401).json({ error: "Authentication error" });
+  const user = await User.findOne({ passwordResetToken: passwordResetToken });
+  console.log("user", user);
+  //2) if the token has not expired , and there is a user , set new password
+
+  if (!user) {
+    return res.status(400).json({ message: "Token is invalid or has expired" });
   }
+  const hashedPassword = await bcrypt.hash(req.body.password, 12);
+  user.password = hashedPassword;
+  console.log("newPass", user.password);
+  user.passwordResetToken = undefined;
+  await user.save();
+
+  //3) update changePasswordAt propert for the user
+
+  //4) log the user in , send JWT
+
+  const token = jwt.sign({ email: user.email, id: user._id }, "test", {
+    expiresIn: "90d",
+  });
+  res.status(200).json({
+    message: "Password reseted successfully",
+    token,
+  });
 };

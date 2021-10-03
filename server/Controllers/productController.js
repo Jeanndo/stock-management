@@ -1,14 +1,14 @@
 import PRODUCT from "../models/productModel.js";
 import mongoose from "mongoose";
-import twilio from 'twilio'
-import dotenv from 'dotenv'
+import twilio from 'twilio';
+import dotenv from 'dotenv';
+import sendEmail from '../utils/email.js';
 
 dotenv.config();
 
 export const getAllProducts = async (req, res) => {
   try {
     const products = await PRODUCT.find();
-    console.log("Backend:Produdcts", products);
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ message: error.message });
@@ -17,25 +17,41 @@ export const getAllProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   const product = req.body;
-  const {phone,owner} =req.body;
-  console.log("product",product)
+  const {email,phone,owner} =req.body;
 
-  const accountSid = 'ACd73d710919b75c3958a7f0a31e11495f'; // Your Account SID from www.twilio.com/console
-  const authToken = 'ef54bb5a3920f54e8e1c3d76d0e3fc5f' // Your Auth Token from www.twilio.com/console  
+  // const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
+  // const authToken = process.env.AUTH_TOKEN // Your Auth Token from www.twilio.com/console  
 
-  const client = new twilio(accountSid, authToken);
+  // const client = new twilio(accountSid, authToken);
 
-  client.messages
-    .create({
-      body: `Dear ${owner} your product are now in our Stock you can visit our websie for payment`,
-      to: `+25${phone}`, // Text this number
-      from: '+16282579513', // From a valid Twilio number
-    })
-    .then((message) => console.log(message.sid));
-
+  // client.messages
+  //   .create({
+  //     body: `Dear ${owner} your product are now in our Stock you can visit our websie for payment`,
+  //     to: `+25${phone}`, // Text this number
+  //     from: '+16282579513', // From a valid Twilio number
+  //   })
+  //   .then((message) => console.log(message.sid));
+  const resetURL = `http://localhost:3000/homepage/`
+  const message = `Dear ${owner} your products arrieved at stock management system,you can vist our site or click the link below to make payment:${resetURL} if you don't have account you can sign up and remember to use this phone number${phone}otherwise you can't see your products THANK YOU for Storing with us`;
+  try {
+    await sendEmail({
+      email:email,
+      subject: "Your products arrieved at stockmanagement system",
+      message,
+    });
+    //  res.status(200).json({
+    //   status: "sucess",
+    //   message: "email sent successfully",
+    // });
+  } catch (error) {
+   res.status(500).json({
+     message:' Some thing went very wrong try again later'
+   })
+    
+  }
 
   const newProduct = new PRODUCT({...product,creator:req.userId,createdAt:new Date().toISOString()});
-  console.log("newProduct",newProduct)
+
   try {
     await newProduct.save();
     res.status(201).json(newProduct);
@@ -68,7 +84,6 @@ export const deleteProduct = async (req, res) => {
 
 export const payment= async(req,res)=>{
 
-  console.log("PaymentInfo",req.body)
   let { phone, amount ,fullname,email} = req.body;
 
    

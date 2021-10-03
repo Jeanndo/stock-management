@@ -7,7 +7,7 @@ router.post('/signup',signup);
 router.post('/signin',signin);
 router.get('/',getUsers)
 router.delete('/:id',deleteUser);
-router.put('forgot-password',forgotPassword)
-router.put('reset-password',resetPassword)
+router.patch('/forgot-password',forgotPassword)
+router.patch('/reset-password',resetPassword)
 
 export default router;

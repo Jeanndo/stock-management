@@ -8,32 +8,28 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useDispatch } from "react-redux";
 import {useHistory} from 'react-router-dom';
-import { signin } from "../../redux/actiions/auth";
+import { resetPassword } from "../../redux/actiions/auth";
 import Marquee from "react-fast-marquee";
 
-const initialState = {password:''};
 
 const theme = createTheme();
 
 const  ResetPassword =()=>{
-
-  const [formData,setFormData] = React.useState(initialState)
+  
+  const passwordResetToken= window.location.href.split('/')[4]
+  const [formData,setFormData] = React.useState({password:'',passwordResetToken:passwordResetToken})
   
   const [submited,setSubmited ]=React.useState(false)
-
 
   const dispatch = useDispatch()
   const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault();
-   // dispatch(signin(formData,history))
+   dispatch(resetPassword(formData))
      setSubmited(!submited)
   };
 
-  const handleChange = (event)=>{
-    setFormData({...formData,[event.target.name]:event.target.value})
-  }
 
  const handleCancel = ()=>{
    history.push('/login')
@@ -43,6 +39,8 @@ console.log("check",submited)
 const handleBack = ()=>{
     history.push('/login')
 }
+
+console.log("pass&token",formData)
   return (
     <>
     {!submited?(
@@ -79,7 +77,7 @@ const handleBack = ()=>{
               name="password"
               autoComplete="password"
               autoFocus
-             onChange={handleChange}
+             onChange={(event)=>setFormData({...formData,password:event.target.value})}
             />
            
             <Button
