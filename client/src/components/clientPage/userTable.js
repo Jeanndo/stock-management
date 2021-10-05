@@ -12,11 +12,14 @@ import { useDispatch } from "react-redux";
 import PayModal from "./Modal";
 import { Button } from "@mui/material";
 import {Link} from "react-router-dom"
+import VerifiedIcon from '@mui/icons-material/Verified';
 
 const UserTable = ()=>{
 
     const dispatch = useDispatch();
     const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')))
+    const [approve,setApprove]= React.useState(false)
+    
     React.useEffect(() => {
       dispatch(getProducts());
     }, [dispatch]);
@@ -37,7 +40,10 @@ const UserTable = ()=>{
                 <b>Quantity</b>
               </TableCell>
               <TableCell align="right">
-                <b>From</b>
+                <b>kg/U</b>
+              </TableCell>
+              <TableCell align="right">
+                <b>WareHouse</b>
               </TableCell>
               <TableCell align="right">
                 <b>Owner</b>
@@ -67,13 +73,13 @@ const UserTable = ()=>{
                   {product.productName}
                 </TableCell>
                 <TableCell align="right">{product.quantity}</TableCell>
+                <TableCell align="right">100</TableCell>
                 <TableCell align="right">{product.from}</TableCell>
                 <TableCell align="right">{product.owner}</TableCell>
                 <TableCell align="right">{product.phone}</TableCell>
                 <TableCell align="right">{product.price}</TableCell>
                 <TableCell align="right">{product.createdAt}</TableCell>
-                <TableCell align="right"><PayModal/></TableCell>
-                
+                <TableCell align="right">{!approve?<PayModal/>:<VerifiedIcon style={{color:'green'}}/>}</TableCell>
               </TableRow>
               )
             ))}
