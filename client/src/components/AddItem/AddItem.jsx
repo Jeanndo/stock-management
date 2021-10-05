@@ -55,6 +55,13 @@ useEffect(()=>{
           value={addProduct.quantity}
           onChange={(event)=>setAddProduct({...addProduct,quantity:event.target.value})}
         />
+        <input
+         type="number" 
+         placeholder="Kg/unit" 
+         className={classes.ProductName}
+         value={addProduct.price}
+         onChange={(event)=>setAddProduct({...addProduct,price:event.target.value})}
+         />
         <input 
         type="text" 
         placeholder="From"
@@ -83,13 +90,7 @@ useEffect(()=>{
           value={addProduct.email}
           onChange={(event)=>setAddProduct({...addProduct,email:event.target.value})}
         />
-        <input
-         type="number" 
-         placeholder="Price" 
-         className={classes.Price} 
-         value={addProduct.price}
-         onChange={(event)=>setAddProduct({...addProduct,price:event.target.value})}
-         />
+        
          <div style={{textAlign:'center',padding:'5px'}}>
         <Button
           variant="contained"

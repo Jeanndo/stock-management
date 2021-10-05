@@ -1,20 +1,26 @@
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import AddItem from "../AddItem/AddItem";
+import ApproveProduct from "./ApproveProduct";
+import VerifiedIcon from '@mui/icons-material/Verified';
 
-const AddItemModal = ({ handleOpen, open, handleClose,currentId ,setCurrentId}) => {
+const ApproveModal = () => {
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     <div>
       <Button onClick={handleOpen} style={{ float: "left" }} variant="outlined">
-        <AddBoxIcon
+        <VerifiedIcon
           style={{
             cursor: "pointer",
             float: "left",
             color: "blue",
           }}
         />
-        Add new product
+        Approve
       </Button>
       <Modal
         open={open}
@@ -22,12 +28,9 @@ const AddItemModal = ({ handleOpen, open, handleClose,currentId ,setCurrentId}) 
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <AddItem handleClose={handleClose} 
-        currentId={currentId}
-        setCurrentId={setCurrentId}
-        />
+        <ApproveProduct handleClose={handleClose}/>
       </Modal>
     </div>
   );
 };
-export default AddItemModal;
+export default ApproveModal;

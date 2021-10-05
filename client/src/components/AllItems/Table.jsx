@@ -11,14 +11,32 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { useSelector } from "react-redux";
 import { deleteProduct } from "../../redux/actiions/product";
 import { useDispatch } from "react-redux";
+import VerifiedIcon from '@mui/icons-material/Verified';
+import ApproveProduct from "./ApproveProduct";
+import Modal from "@mui/material/Modal";
 
 const ItemTable = ({ setCurrentId, currentId }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const user = JSON.parse(localStorage.getItem("profile"));
-  console.log(user?.result?.role === "agent");
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  
   return (
     <>
+
+      <div>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <ApproveProduct handleClose={handleClose}/>
+      </Modal>
+    </div>
+
       {user?.result?.role === "agent" ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -31,13 +49,16 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                   <b>Quantity</b>
                 </TableCell>
                 <TableCell align="right">
-                  <b>From</b>
+                  <b>Kg/U</b>
+                </TableCell>
+                <TableCell align="right">
+                  <b>Warehouse</b>
                 </TableCell>
                 <TableCell align="right">
                   <b>Owner</b>
                 </TableCell>
                 <TableCell align="right">
-                  <b>Owner Phone Number</b>
+                  <b>Phone</b>
                 </TableCell>
                 <TableCell align="right">
                   <b>email</b>
@@ -68,6 +89,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                         {product.productName}
                       </TableCell>
                       <TableCell align="right">{product.quantity}</TableCell>
+                      <TableCell align="right">100</TableCell>
                       <TableCell align="right">{product.from}</TableCell>
                       <TableCell align="right">{product.owner}</TableCell>
                       <TableCell align="right">{product.phone}</TableCell>
@@ -114,13 +136,16 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                     <b>Quantity</b>
                   </TableCell>
                   <TableCell align="right">
-                    <b>From</b>
+                  <b>Kg/U</b>
+                </TableCell>
+                  <TableCell align="right">
+                  <b>Warehouse</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>Owner</b>
                   </TableCell>
                   <TableCell align="right">
-                    <b>Owner Phone Number</b>
+                    <b>Phone</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>email</b>
@@ -130,6 +155,9 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                   </TableCell>
                   <TableCell align="right">
                     <b>Date</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <b>Approve</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>Edit</b>
@@ -149,12 +177,18 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                       {product.productName}
                     </TableCell>
                     <TableCell align="right">{product.quantity}</TableCell>
+                    <TableCell align="right">100</TableCell>
                     <TableCell align="right">{product.from}</TableCell>
                     <TableCell align="right">{product.owner}</TableCell>
                     <TableCell align="right">{product.phone}</TableCell>
                     <TableCell align="right">{product?.email}</TableCell>
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">{product.createdAt}</TableCell>
+                    <TableCell align="right">
+                      <VerifiedIcon onClick={handleOpen}
+                      style={{cursor:'pointer', color: "#2196f3"}}
+                      />
+                      </TableCell>
                     <TableCell align="right">
                       <EditIcon
                         style={{
