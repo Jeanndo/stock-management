@@ -1,7 +1,13 @@
 import React from "react";
 import { TextField, Button } from "@mui/material";
+import {approveProduct} from '../../redux/actiions/ApproveEmail';
+import { useDispatch } from "react-redux";
+import {useHistory} from 'react-router-dom'
 
 const ApproveProduct = () => {
+  
+  const dispatch = useDispatch()
+  const history = useHistory()
   const [formData, setFormData] = React.useState({
     email: "",
     subject: "",
@@ -9,8 +15,10 @@ const ApproveProduct = () => {
   });
 
   const handleApprove = (event) => {
-    event.prevent.Default();
+   event.preventDefault()
+    dispatch(approveProduct(formData,history))
   };
+  console.log("formData:",formData)
 
   return (
     <div
@@ -19,7 +27,7 @@ const ApproveProduct = () => {
         flexDirection: "column",
         backgroundColor: "#fff",
         marginTop: "100px",
-        height: "50vh",
+        height: "55vh",
         textAligin: "center",
         padding: "20px",
         width:'400px',

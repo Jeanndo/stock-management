@@ -3,9 +3,9 @@ import {
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
   CREATE_PRODUCT,
+  APPROVE_EMAIL
  
 } from '../actiions/types/actionTypes'
-
 
 import * as api from '../../api'
 
@@ -57,4 +57,13 @@ export const updateProduct = (id,product)=>async (dispatch)=>{
     }
   }
 
-  
+export const ApproveEmail = (formData,history)=>async(dispatch)=>{
+    try {
+     const{data} = await api.approveEmail(formData)
+        dispatch({type:APPROVE_EMAIL,payload:formData});
+        history.push('/dashboard')
+    } catch (error) {
+        console.log(error.message); 
+    }
+    
+}

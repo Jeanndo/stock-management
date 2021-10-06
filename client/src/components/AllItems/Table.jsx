@@ -20,9 +20,15 @@ const ItemTable = ({ setCurrentId, currentId }) => {
   const products = useSelector((state) => state.products);
   const user = JSON.parse(localStorage.getItem("profile"));
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const [email,setEmail] =React.useState("");
+
+  const handleOpen = (product) => {
+    setOpen(true)
+    setEmail(product.email)
+  };
+
   const handleClose = () => setOpen(false);
-  
+  console.log("Email",email)
   return (
     <>
 
@@ -185,7 +191,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">{product.createdAt}</TableCell>
                     <TableCell align="right">
-                      <VerifiedIcon onClick={handleOpen}
+                      <VerifiedIcon onClick={()=>handleOpen(product)}
                       style={{cursor:'pointer', color: "#2196f3"}}
                       />
                       </TableCell>
