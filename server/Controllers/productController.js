@@ -63,8 +63,9 @@ export const createProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
   const { id: _id } = req.params;
   const product = req.body;
+  console.log(req.body)
   if (!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(404).send("No Product with that id");
+    return res.status(404).send("No Product with that id on update");
 
   const updatedProduct = await PRODUCT.findByIdAndUpdate(_id, product, {
     new: true,
@@ -111,28 +112,63 @@ export const payment= async(req,res)=>{
     }
   }
 
+// export const approveProduct = async(req,res)=>{
+
+// const message = `Dear @ ${req.body.email} Your Product are now Approved!!!`;
+
+// try {
+ 
+//   await sendEmail({
+//     email:req.body.email,
+//     subject: "Your products arrieved at stockmanagement system",
+//     message,
+//   });
+
+//   const email = req.body
+//   const newEmail = new Email(email);
+//   await newEmail.save();
+
+//   res.status(201).json(newEmail);
+// } catch (error) {
+//   console.log(error)
+//  res.status(500).json({
+//    message:error.message
+//  })
+  
+// }
+// }
+
 export const approveProduct = async(req,res)=>{
 
-const message = `Dear @ ${req.body.email} Your Product are now Approved!!!`;
+  const {id} = req.params;
+  const {email,subject} = req.body  
+  const value=req.body;
+  console.log("value",value)
+  console.log("body",req.body)
+  console.log("data",email)
+  console.log("subject",subject)
+  console.log("message",req.body.message)
+  console.log("id",id)
 
-try {
- 
+ if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No Product with that id approving");
+ const message = `Dear @ ${email} ${req.body.message}`;
+ try {
   await sendEmail({
-    email:req.body.email,
-    subject: "Your products arrieved at stockmanagement system",
-    message,
+  email:email,
+  subject: "Your products arrieved at custom bonded warehouse system system",
+  message,
   });
 
-  const email = req.body
-  const newEmail = new Email(email);
-  await newEmail.save();
+  const product =  await PRODUCT.findById(id);
+  console.log("new product",product)
 
-  res.status(201).json(newEmail);
-} catch (error) {
-  console.log(error)
- res.status(500).json({
-   message:error.message
- })
+  product.approvedProducts.push(value)
   
-}
+  const approvedProduct = await PRODUCT.findByIdAndUpdate(id,product,{new:true})
+  console.log("approved",approvedProduct)
+  res.json(approvedProduct)
+ } catch (error) {
+  res.status(409).json({ message:error.message});
+ }
+
 }

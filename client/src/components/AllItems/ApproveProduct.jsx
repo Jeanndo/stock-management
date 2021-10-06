@@ -1,13 +1,11 @@
 import React from "react";
 import { TextField, Button } from "@mui/material";
-import {approveProduct} from '../../redux/actiions/ApproveEmail';
+import {approveProduct} from '../../redux/actiions/product';
 import { useDispatch } from "react-redux";
-import {useHistory} from 'react-router-dom'
 
-const ApproveProduct = () => {
+const ApproveProduct = ({id}) => {
   
   const dispatch = useDispatch()
-  const history = useHistory()
   const [formData, setFormData] = React.useState({
     email: "",
     subject: "",
@@ -16,9 +14,14 @@ const ApproveProduct = () => {
 
   const handleApprove = (event) => {
    event.preventDefault()
-    dispatch(approveProduct(formData,history))
+    dispatch(approveProduct(id,formData))
+    clear()
   };
-  console.log("formData:",formData)
+  console.log("formData&Id:",formData,id)
+
+  const clear =() =>{
+    setFormData({ email: "",subject: "",message: ""})
+  }
 
   return (
     <div

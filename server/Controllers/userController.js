@@ -10,7 +10,7 @@ export const signin = async (req, res) => {
 
   try {
     const existingUser = await User.findOne({ email });
-    console.log("user", password, existingUser.password);
+  
 
     if (!existingUser)
       return res.status(404).json({ message: "User doesn't exist" });
@@ -18,7 +18,7 @@ export const signin = async (req, res) => {
       password,
       existingUser.password
     );
-    console.log("is correct", isPasswordCorrect);
+    
     if (!isPasswordCorrect)
       return res.status(400).json({ message: "Invalid Credentials" });
     const token = jwt.sign(

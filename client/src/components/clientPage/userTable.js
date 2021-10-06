@@ -73,7 +73,7 @@ const UserTable = ()=>{
                   {product.productName}
                 </TableCell>
                 <TableCell align="right">{product.quantity}</TableCell>
-                <TableCell align="right">100</TableCell>
+                <TableCell align="right">{product.KgperUnity}</TableCell>
                 <TableCell align="right">{product.from}</TableCell>
                 <TableCell align="right">{product.owner}</TableCell>
                 <TableCell align="right">{product.phone}</TableCell>
