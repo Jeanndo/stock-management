@@ -2,7 +2,7 @@ import {
     FETCH_PRODUCTS,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-
+    APPROVE_EMAIL,
     CREATE_PRODUCT,
 
   } from '../actiions/types/actionTypes'
@@ -18,6 +18,8 @@ const productReducer = (products=[],action)=>{
             return action.payload;
         case CREATE_PRODUCT:
         return  [...products,action.payload];
+        case APPROVE_EMAIL:
+            return action.payload
         default:
             return products;
     }
