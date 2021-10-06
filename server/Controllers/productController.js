@@ -1,6 +1,6 @@
 import PRODUCT from "../models/productModel.js";
 import mongoose from "mongoose";
-import twilio from 'twilio';
+import Email from '../models/Email.js'
 import dotenv from 'dotenv';
 import sendEmail from '../utils/email.js';
 
@@ -111,4 +111,28 @@ export const payment= async(req,res)=>{
     }
   }
 
+export const approveProduct = async(req,res)=>{
 
+const message = `Dear @ ${req.body.email} Your Product are now Approved!!!`;
+
+try {
+ 
+  await sendEmail({
+    email:req.body.email,
+    subject: "Your products arrieved at stockmanagement system",
+    message,
+  });
+
+  const email = req.body
+  const newEmail = new Email(email);
+  await newEmail.save();
+
+  res.status(201).json(newEmail);
+} catch (error) {
+  console.log(error)
+ res.status(500).json({
+   message:error.message
+ })
+  
+}
+}
