@@ -16,19 +16,21 @@ import ApproveProduct from "./ApproveProduct";
 import Modal from "@mui/material/Modal";
 
 const ItemTable = ({ setCurrentId, currentId }) => {
+
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const user = JSON.parse(localStorage.getItem("profile"));
   const [open, setOpen] = React.useState(false);
-  const [email,setEmail] =React.useState("");
+  const [prodId,setProdId] =React.useState("");
 
   const handleOpen = (product) => {
     setOpen(true)
-    setEmail(product.email)
+    setProdId(product._id)
   };
 
   const handleClose = () => setOpen(false);
-  console.log("Email",email)
+  console.log("product",prodId)
+
   return (
     <>
 
@@ -39,7 +41,9 @@ const ItemTable = ({ setCurrentId, currentId }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <ApproveProduct handleClose={handleClose}/>
+        <ApproveProduct handleClose={handleClose}
+         id={prodId}
+        />
       </Modal>
     </div>
 
@@ -95,7 +99,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                         {product.productName}
                       </TableCell>
                       <TableCell align="right">{product.quantity}</TableCell>
-                      <TableCell align="right">100</TableCell>
+                      <TableCell align="right">{product.KgperUnity}</TableCell>
                       <TableCell align="right">{product.from}</TableCell>
                       <TableCell align="right">{product.owner}</TableCell>
                       <TableCell align="right">{product.phone}</TableCell>
@@ -183,7 +187,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                       {product.productName}
                     </TableCell>
                     <TableCell align="right">{product.quantity}</TableCell>
-                    <TableCell align="right">100</TableCell>
+                    <TableCell align="right">{product.KgperUnity}</TableCell>
                     <TableCell align="right">{product.from}</TableCell>
                     <TableCell align="right">{product.owner}</TableCell>
                     <TableCell align="right">{product.phone}</TableCell>

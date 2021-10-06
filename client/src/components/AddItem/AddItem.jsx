@@ -14,7 +14,7 @@ const AddItem = ({currentId,setCurrentId}) => {
   
   const product = useSelector((state)=>currentId?state.products.find((p)=>p._id===currentId):null);
 
-  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:Number,email:'',price:''})
+  const[addProduct,setAddProduct] = useState({productName:'',quantity:'',from:'',owner:'',phone:Number,email:'',KgperUnity:Number})
  
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,7 +34,7 @@ useEffect(()=>{
   const Clear = ()=>{
     setCurrentId(null);
 
-    setAddProduct({productName:'',quantity:'',from:'',owner:'',phone:'',email:'',price:''});
+    setAddProduct({productName:'',quantity:'',from:'',owner:'',phone:'',email:'',KgperUnity:Number});
   
 }
 
@@ -59,12 +59,12 @@ useEffect(()=>{
          type="number" 
          placeholder="Kg/unit" 
          className={classes.ProductName}
-         value={addProduct.price}
-         onChange={(event)=>setAddProduct({...addProduct,price:event.target.value})}
+         value={addProduct.KgperUnity}
+         onChange={(event)=>setAddProduct({...addProduct,KgperUnity:event.target.value})}
          />
         <input 
         type="text" 
-        placeholder="From"
+        placeholder="Warehouse"
         className={classes.From} 
         value={addProduct.from}
         onChange={(event)=>setAddProduct({...addProduct,from:event.target.value})}

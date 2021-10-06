@@ -2,7 +2,6 @@ import {
     FETCH_PRODUCTS,
     UPDATE_PRODUCT,
     DELETE_PRODUCT,
-    APPROVE_EMAIL,
     CREATE_PRODUCT,
 
   } from '../actiions/types/actionTypes'
@@ -10,7 +9,7 @@ import {
 const productReducer = (products=[],action)=>{
     switch(action.type){
         case DELETE_PRODUCT:
-            return products.filter((product)=>product._id !==action.payload._id);
+            return products.filter((product)=>product._id !==action.payload);
 
         case UPDATE_PRODUCT:
             return products.map((product)=>product._id===action.payload._id?action.payload:product);
@@ -18,8 +17,6 @@ const productReducer = (products=[],action)=>{
             return action.payload;
         case CREATE_PRODUCT:
         return  [...products,action.payload];
-        case APPROVE_EMAIL:
-            return action.payload
         default:
             return products;
     }
