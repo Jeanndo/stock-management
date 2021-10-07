@@ -64,3 +64,12 @@ export const approveProduct = (id,formData)=>async(dispatch)=>{
         console.log(error.message); 
     }
 }
+
+export const paidProduct = (id)=>async(dispatch)=>{
+  try {
+      const {data} = await api.paidProduct(id)
+      dispatch({type:UPDATE_PRODUCT,payload:data});
+  } catch (error) {
+      console.log(error.message); 
+  }
+}

@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import Pay from './pay'
 
-const PayModal = () => {
+const PayModal = ({productId}) => {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -21,7 +21,7 @@ const PayModal = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Pay handleClose={handleClose} />
+        <Pay handleClose={handleClose} productId={productId}/>
       </Modal>
     </div>
   );

@@ -1,7 +1,17 @@
 import * as React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import {paidProduct} from '../../redux/actiions/product'
+import { useDispatch } from "react-redux";
 
-const Pay = () => {
+
+const Pay = ({productId}) => {
+
+  const dispatch = useDispatch()
+
+  const handlePaid = ()=>{
+    dispatch(paidProduct(productId))
+  }
+ console.log("id",productId)
   return (
     <div
       style={{
@@ -15,7 +25,7 @@ const Pay = () => {
       }}
     >
       <PayPalScriptProvider options={{ "client-id": "test" }}>
-        <PayPalButtons style={{ layout: "horizontal" }} />
+        <PayPalButtons style={{ layout: "horizontal" }} onClick={handlePaid}/>
       </PayPalScriptProvider>
       <div>        
         <h4>Names:jeanndo</h4>

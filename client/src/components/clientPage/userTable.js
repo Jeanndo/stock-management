@@ -18,14 +18,14 @@ const UserTable = ()=>{
 
     const dispatch = useDispatch();
     const [user,setUser] = React.useState(JSON.parse(localStorage.getItem('profile')))
-    const [approve,setApprove]= React.useState(false)
     
     React.useEffect(() => {
       dispatch(getProducts());
     }, [dispatch]);
-  
+    
     const products = useSelector((state) => state.products);
     console.log("prod",products)
+
     return  (
       <>
         { user?.result?.role==='client'?(
@@ -79,7 +79,7 @@ const UserTable = ()=>{
                 <TableCell align="right">{product.phone}</TableCell>
                 <TableCell align="right">{product.price}</TableCell>
                 <TableCell align="right">{product.createdAt}</TableCell>
-                <TableCell align="right">{!approve?<PayModal/>:<VerifiedIcon style={{color:'green'}}/>}</TableCell>
+                <TableCell align="right">{product?.approvedProducts>-1?<PayModal productId={product._id} />:<VerifiedIcon style={{color:'green'}}/>}</TableCell>
               </TableRow>
               )
             ))}

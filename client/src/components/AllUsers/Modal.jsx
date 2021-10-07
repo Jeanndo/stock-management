@@ -14,7 +14,7 @@ const AddUserModal = ({ handleOpen, open, handleClose }) => {
             color: "blue",
           }}
         />
-        Add new User
+        Add new Employee
       </Button>
       <Modal
         open={open}

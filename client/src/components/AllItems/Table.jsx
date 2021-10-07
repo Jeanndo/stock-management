@@ -14,12 +14,15 @@ import { useDispatch } from "react-redux";
 import VerifiedIcon from '@mui/icons-material/Verified';
 import ApproveProduct from "./ApproveProduct";
 import Modal from "@mui/material/Modal";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const ItemTable = ({ setCurrentId, currentId }) => {
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
   const user = JSON.parse(localStorage.getItem("profile"));
+  const status = JSON.parse(localStorage.getItem('paid'));
+
   const [open, setOpen] = React.useState(false);
   const [prodId,setProdId] =React.useState("");
 
@@ -29,7 +32,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
   };
 
   const handleClose = () => setOpen(false);
-  console.log("product",prodId)
+  console.log("status",status)
 
   return (
     <>
@@ -74,7 +77,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                   <b>email</b>
                 </TableCell>
                 <TableCell align="right">
-                  <b>Price </b>
+                  <b>Price(FRW) </b>
                 </TableCell>
                 <TableCell align="right">
                   <b>Date</b>
@@ -134,7 +137,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
           </Table>
         </TableContainer>
       ) : (
-        user?.result?.role === "admin" && (
+        user?.result?.role === "admin"|'cashier' && (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -161,13 +164,16 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                     <b>email</b>
                   </TableCell>
                   <TableCell align="right">
-                    <b>Price </b>
+                    <b>Price(FRW)</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>Date</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>Approve</b>
+                  </TableCell>
+                  <TableCell align="right">
+                    <b>status</b>
                   </TableCell>
                   <TableCell align="right">
                     <b>Edit</b>
@@ -199,6 +205,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
                       style={{cursor:'pointer', color: "#2196f3"}}
                       />
                       </TableCell>
+                      <TableCell align="right">{product?.status>-1?<AttachMoneyIcon style={{color:'#2196f3'}}/>:'Not Paid'}</TableCell>
                     <TableCell align="right">
                       <EditIcon
                         style={{

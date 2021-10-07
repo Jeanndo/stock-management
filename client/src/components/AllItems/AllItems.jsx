@@ -5,7 +5,6 @@ import AddItem from '../AddItem/AddItem'
 
 const AllItems = () => {
     const [currentId,setCurrentId] = React.useState(null)
-
   return (
       
     <div>
