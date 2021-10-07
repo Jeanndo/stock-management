@@ -14,10 +14,15 @@ const productSchema = mongoose.Schema({
     type:[],
     default:[]
   },
+  status:{
+    type:[String],
+    default:[]
+  },
   createdAt:{
     type:Date,
-    default:new Date().toLocaleString('en-US')
-  }
+    default:new Date()
+  },
+
 })
 
 const PRODUCT = mongoose.model('PRODUCT',productSchema);
