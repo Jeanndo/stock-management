@@ -67,9 +67,9 @@ React.useEffect(()=>{
         <ListItemIcon>
           <PeopleTwoTone style={{color:'#2196f3'}}/>
         </ListItemIcon>
-        <ListItemText primary="All Users" />
+        <ListItemText primary="All Employees" />
       </ListItem>
-      <ListItem button onClick={handleReport}>
+      <ListItem button onClick={handleReport}>                                                            
         <ListItemIcon>
           <BarChartIcon style={{color:'#2196f3'}}/>
         </ListItemIcon>

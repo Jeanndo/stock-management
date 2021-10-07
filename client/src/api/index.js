@@ -19,6 +19,7 @@ export const updateProduct  = (id,updatedProduct)=>API.patch(`/products/${id}`,u
 export const deleteProduct  = (id)=>API.delete(`/products/${id}`);
 export const payment = (paymentInfo)=>API.post(`/products/pay`,paymentInfo)
 export const approveProduct = (id,formData)=>API.post(`/products/${id}/emails`,formData)
+export const paidProduct = (id)=>API.post(`/products/${id}/paid`,id)
 
 export const signIn = (formData)=>API.post('/user/signin',formData);
 export const signUp = (formData)=>API.post('/user/signup',formData);

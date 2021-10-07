@@ -110,7 +110,7 @@ function DashboardContent() {
             </IconButton>
             <Marquee>
             <Typography component="h1" variant="h6" noWrap sx={{ flexGrow: 1 }}style={{textAlign:'center'}}>
-              STOCK MANAGEMENT SYSTEM || Hello {user?.result?.name?.toUpperCase()}
+              CUSTOM BONDED WAREHOUSE SYSTEM || Hello {user?.result?.name?.toUpperCase()}
             </Typography>
             </Marquee>
             <Button 

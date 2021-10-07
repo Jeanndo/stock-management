@@ -63,7 +63,7 @@ const UserNavBar = () => {
          <>
          <div className={classes.welcome}>
          <Marquee>
-           <Typography>WELCOME to STOCK MANAGEMENT SYSTEM</Typography>
+           <Typography>WELCOME TO CUSTOM BONDED WAREHOUSE SYSTEM</Typography>
          </Marquee>
        </div>
        <div className={classes.profile}>

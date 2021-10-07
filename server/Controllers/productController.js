@@ -18,39 +18,25 @@ export const getAllProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
   const product = req.body;
   const {email,phone,owner} =req.body;
-
-  // const accountSid = process.env.ACCOUNT_SID; // Your Account SID from www.twilio.com/console
-  // const authToken = process.env.AUTH_TOKEN // Your Auth Token from www.twilio.com/console  
-
-  // const client = new twilio(accountSid, authToken);
-
-  // client.messages
-  //   .create({
-  //     body: `Dear ${owner} your product are now in our Stock you can visit our websie for payment`,
-  //     to: `+25${phone}`, // Text this number
-  //     from: '+16282579513', // From a valid Twilio number
-  //   })
-  //   .then((message) => console.log(message.sid));
+  
   const resetURL = `http://localhost:3000/homepage/`
-  const message = `Dear ${owner} your products arrieved at stock management system,you can vist our site or click the link below to make payment:${resetURL} if you don't have account you can sign up and remember to use this phone number${phone}otherwise you can't see your products THANK YOU for Storing with us`;
+  const message = `Dear ${owner} your products arrieved at CUSTOM BONDED WAREHOUSE,you can vist our site or click the link below to make payment:${resetURL} if you don't have account you can sign up and remember to use this phone number${phone}otherwise you can't see your products THANK YOU for Storing with us`;
   try {
     await sendEmail({
       email:email,
-      subject: "Your products arrieved at stockmanagement system",
+      subject: "Your products arrieved at CUSTOM BONDED WAREHOUSE system",
       message,
     });
-    //  res.status(200).json({
-    //   status: "sucess",
-    //   message: "email sent successfully",
-    // });
   } catch (error) {
    res.status(500).json({
      message:' Some thing went very wrong try again later'
    })
     
   }
-
-  const newProduct = new PRODUCT({...product,creator:req.userId,createdAt:new Date().toISOString()});
+  const initialPoint = req.body.quantity*req.body.KgperUnity*12
+  const Proprice =(initialPoint*18)/100;
+   console.log("Price",Proprice)
+  const newProduct = new PRODUCT({...product,creator:req.userId,createdAt:new Date(),price:Proprice});
 
   try {
     await newProduct.save();
@@ -112,44 +98,12 @@ export const payment= async(req,res)=>{
     }
   }
 
-// export const approveProduct = async(req,res)=>{
-
-// const message = `Dear @ ${req.body.email} Your Product are now Approved!!!`;
-
-// try {
- 
-//   await sendEmail({
-//     email:req.body.email,
-//     subject: "Your products arrieved at stockmanagement system",
-//     message,
-//   });
-
-//   const email = req.body
-//   const newEmail = new Email(email);
-//   await newEmail.save();
-
-//   res.status(201).json(newEmail);
-// } catch (error) {
-//   console.log(error)
-//  res.status(500).json({
-//    message:error.message
-//  })
-  
-// }
-// }
-
 export const approveProduct = async(req,res)=>{
 
   const {id} = req.params;
   const {email,subject} = req.body  
   const value=req.body;
-  console.log("value",value)
-  console.log("body",req.body)
-  console.log("data",email)
-  console.log("subject",subject)
-  console.log("message",req.body.message)
-  console.log("id",id)
-
+ 
  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No Product with that id approving");
  const message = `Dear @ ${email} ${req.body.message}`;
  try {
@@ -160,15 +114,27 @@ export const approveProduct = async(req,res)=>{
   });
 
   const product =  await PRODUCT.findById(id);
-  console.log("new product",product)
-
   product.approvedProducts.push(value)
-  
   const approvedProduct = await PRODUCT.findByIdAndUpdate(id,product,{new:true})
-  console.log("approved",approvedProduct)
   res.json(approvedProduct)
  } catch (error) {
   res.status(409).json({ message:error.message});
  }
+}
 
+export const checkStatus = async(req,res)=>{
+  const {id} = req.params;
+
+  console.log("paid",id)
+
+ if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("No Product with that id ");;
+ try {
+  const product =  await PRODUCT.findById(id);
+  console.log("paid",product)
+  product.status.push(id)
+  const paidProduct = await PRODUCT.findByIdAndUpdate(id,product,{new:true})
+  res.json(paidProduct)
+ } catch (error) {
+  res.status(409).json({ message:error.message});
+ }
 }
