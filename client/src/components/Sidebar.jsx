@@ -61,7 +61,7 @@ React.useEffect(()=>{
         </ListItemIcon>
         <ListItemText primary="All Products" />
       </ListItem>
-      {user?.result?.role==="admin"&&(
+      {user?.result?.role==="admin"||"cashier"&&(
         <>
         <ListItem button onClick={handleAllUsers}>
         <ListItemIcon>

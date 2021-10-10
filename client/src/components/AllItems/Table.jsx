@@ -136,8 +136,7 @@ const ItemTable = ({ setCurrentId, currentId }) => {
             </TableBody>
           </Table>
         </TableContainer>
-      ) : (
-        user?.result?.role === "admin"|'cashier' && (
+      ) : (((user?.result?.role === "admin")||(user?.result?.role==="cashier" ))&& (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
