@@ -51,7 +51,7 @@ export const signup = (formData, history) => async (dispatch) => {
       data?.result?.role === "ADMIN"
     ) {
       history.push("/dashboard");
-    }else if(data?.result?.role === "cashier"){
+    }else if(data?.result?.role === "cashier"||"CASHIER"){
       history.push("/dashboard");
     }else if (
       data?.result?.role === "client" ||
